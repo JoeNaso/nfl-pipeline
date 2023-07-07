@@ -1,0 +1,1 @@
+A non-trivial example of taking a blob of "event" data in s3, and parsing into individual tables using Snowflake features
