@@ -5,7 +5,7 @@ import boto3
 import click
 
 from pipeline.data import get_nfl_data, clean_data, get_filename
-from pipeline.snowflake import get_snowflake_conn, create_handler_stage, get_stage_uri
+from pipeline.db.snow import get_snowflake_conn, create_handler_stage, get_stage_uri
 
 
 @click.group()
@@ -38,16 +38,24 @@ def upload_handler_to_stage():
 @click.command()
 @click.option("--years", type=int, nargs=3)
 @click.option("--bucket", type=str)
-def load(years, bucket):
+@click.option("--ext", type=str)
+def load(years, bucket, ext):
     """
     Load specified NFL data into s3 for later use.
     Uses s3fs for direct upload to s3 in lieu of boto
+    Extension options: csv, parquet
     """
     for year in years:
         data = get_nfl_data(year)
         data = clean_data(data)
-        filename = get_filename(bucket, year)
-        data.to_csv(filename, index=False, sep="|", encoding="utf-8")
+        filename = get_filename(bucket, year, ext=ext)
+        if filename.endswith('csv'):
+            data.to_csv(filename, index=False, sep="|", encoding="utf-8")
+        elif filename.endswith('parquet'):
+            data.to_parquet(filename, index=False)
+        else:
+            raise ValueError("Provided extention not supported")
+
         print(f"Loaded to s3:\t{filename}")
 
 

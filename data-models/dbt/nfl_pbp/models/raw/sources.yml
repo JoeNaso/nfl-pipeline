@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: raw_nfl
+    meta:
+      # Works as an f-string at runtime
+      external_location: "s3://purview-snowflake/raw/nfl/{table}.parquet"
+    tables:
+      - name: pbp_2020
+        meta:
+          external_location: "read_parquet('s3://purview-snowflake/raw/nfl/pbp-2020.parquet')"
+      - name: pbp_2021
+        meta:
+          external_location: "read_parquet('s3://purview-snowflake/raw/nfl/pbp-2021.parquet')"
+      - name: pbp_2022
+        meta:
+          external_location: "read_parquet('s3://purview-snowflake/raw/nfl/pbp-2022.parquet')"

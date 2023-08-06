@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any, List, Optional
 
 import nfl_data_py as nfl
 import numpy as np
@@ -8,10 +8,9 @@ KEY = "raw/nfl"
 
 
 def get_nfl_data(year: int) -> List[List[Any]]:
-     data = nfl.import_pbp_data([year])
-     # data = pl.from_pandas(nfl.import_pbp_data([year]))
-     print(f"Season dataset shape:\t{data.shape}")
-     return data
+    data = nfl.import_pbp_data([year])
+    print(f"Season dataset shape:\t{data.shape}")
+    return data
 
 
 def replace_degree_symbol(val):
@@ -20,7 +19,7 @@ def replace_degree_symbol(val):
     if isinstance(val, float):
         if np.isnan(val):
             return val
-    return val.replace('\xb0', '')
+    return val.replace("\xb0", "")
 
 
 def clean_data(df: "pandas.DataFrame") -> List[List[Any]]:
@@ -33,5 +32,5 @@ def clean_data(df: "pandas.DataFrame") -> List[List[Any]]:
     return df
 
 
-def get_filename(bucket, year: int):
-    return f"s3://{bucket}/{KEY}/pbp-{year}.csv"
+def get_filename(bucket, year: int, ext: Optional[str] = "csv"):
+    return f"s3://{bucket}/{KEY}/pbp-{year}.{ext}"

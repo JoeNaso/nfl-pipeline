@@ -1,11 +1,16 @@
 botocore<1.29.77,>=1.29.76
 boto3
 click
+dbt-core
+dbt-snowflake
+dbt-duckdb
 ipython
 nfl_data_py
 numpy>=1.20.3
-snowflake-connector-python<4.0.0,>=2.7.12
-snowflake-snowpark-python[pandas]
+# Snowpark requires python 3.8 smh
+# snowflake-connector-python<4.0.0,>=2.7.12
+# snowflake-snowpark-python[pandas]
+sqlmesh
 s3fs
 pandas>=1.5.0
 polars

@@ -1,0 +1,1573 @@
+workspace:
+  name: nfl_sdf
+  edition: "1.1"
+  dialect: sdf
+  description: >
+    An SDF implementation of various data models
+  remote-location: 's3://purview-snowflake/sdf/'
+  includes:
+    - path: src
+  code-checks:
+    - name: Code Check
+      description: >
+        Ensure that there is no PII.name
+      assert: not-exists
+      path: checks/code_check.sql
+
+---
+classifier:
+  name: PII
+  labels:
+    - name: name
+
+---
+table: 
+  name: pbp_2020
+  file-format: csv
+  with-header: true
+  location: src/raw/pbp_2020.sql
+  delimiter: ','
+  columns:
+      - name: play_id
+        datatype: float
+      - name: game_id
+        datatype: varchar
+      - name: old_game_id
+        datatype: varchar
+      - name: home_team
+        datatype: varchar
+      - name: away_team
+        datatype: varchar
+      - name: season_type
+        datatype: varchar
+      - name: week
+        datatype: integer
+      - name: posteam
+        datatype: varchar
+      - name: posteam_type
+        datatype: varchar
+      - name: defteam
+        datatype: varchar
+      - name: side_of_field
+        datatype: varchar
+      - name: yardline_100
+        datatype: float
+      - name: game_date
+        datatype: varchar
+      - name: quarter_seconds_remaining
+        datatype: float
+      - name: half_seconds_remaining
+        datatype: float
+      - name: game_seconds_remaining
+        datatype: float
+      - name: game_half
+        datatype: varchar
+      - name: quarter_end
+        datatype: float
+      - name: drive
+        datatype: float
+      - name: sp
+        datatype: float
+      - name: qtr
+        datatype: float
+      - name: down
+        datatype: float
+      - name: goal_to_go
+        datatype: float
+      - name: time
+        datatype: varchar
+      - name: yrdln
+        datatype: varchar
+      - name: ydstogo
+        datatype: float
+      - name: ydsnet
+        datatype: float
+      - name: desc
+        datatype: varchar
+      - name: play_type
+        datatype: varchar
+      - name: yards_gained
+        datatype: float
+      - name: shotgun
+        datatype: float
+      - name: no_huddle
+        datatype: float
+      - name: qb_dropback
+        datatype: float
+      - name: qb_kneel
+        datatype: float
+      - name: qb_spike
+        datatype: float
+      - name: qb_scramble
+        datatype: float
+      - name: pass_length
+        datatype: varchar
+      - name: pass_location
+        datatype: varchar
+      - name: air_yards
+        datatype: float
+      - name: yards_after_catch
+        datatype: float
+      - name: run_location
+        datatype: varchar
+      - name: run_gap
+        datatype: varchar
+      - name: field_goal_result
+        datatype: varchar
+      - name: kick_distance
+        datatype: float
+      - name: extra_point_result
+        datatype: varchar
+      - name: two_point_conv_result
+        datatype: varchar
+      - name: home_timeouts_remaining
+        datatype: float
+      - name: away_timeouts_remaining
+        datatype: float
+      - name: timeout
+        datatype: float
+      - name: timeout_team
+        datatype: varchar
+      - name: td_team
+        datatype: varchar
+      - name: td_player_name
+        datatype: varchar
+      - name: td_player_id
+        datatype: varchar
+      - name: posteam_timeouts_remaining
+        datatype: float
+      - name: defteam_timeouts_remaining
+        datatype: float
+      - name: total_home_score
+        datatype: float
+      - name: total_away_score
+        datatype: float
+      - name: posteam_score
+        datatype: float
+      - name: defteam_score
+        datatype: float
+      - name: score_differential
+        datatype: float
+      - name: posteam_score_post
+        datatype: float
+      - name: defteam_score_post
+        datatype: float
+      - name: score_differential_post
+        datatype: float
+      - name: no_score_prob
+        datatype: float
+      - name: opp_fg_prob
+        datatype: float
+      - name: opp_safety_prob
+        datatype: float
+      - name: opp_td_prob
+        datatype: float
+      - name: fg_prob
+        datatype: float
+      - name: safety_prob
+        datatype: float
+      - name: td_prob
+        datatype: float
+      - name: extra_point_prob
+        datatype: float
+      - name: two_point_conversion_prob
+        datatype: float
+      - name: ep
+        datatype: float
+      - name: epa
+        datatype: float
+      - name: total_home_epa
+        datatype: float
+      - name: total_away_epa
+        datatype: float
+      - name: total_home_rush_epa
+        datatype: float
+      - name: total_away_rush_epa
+        datatype: float
+      - name: total_home_pass_epa
+        datatype: float
+      - name: total_away_pass_epa
+        datatype: float
+      - name: air_epa
+        datatype: float
+      - name: yac_epa
+        datatype: float
+      - name: comp_air_epa
+        datatype: float
+      - name: comp_yac_epa
+        datatype: float
+      - name: total_home_comp_air_epa
+        datatype: float
+      - name: total_away_comp_air_epa
+        datatype: float
+      - name: total_home_comp_yac_epa
+        datatype: float
+      - name: total_away_comp_yac_epa
+        datatype: float
+      - name: total_home_raw_air_epa
+        datatype: float
+      - name: total_away_raw_air_epa
+        datatype: float
+      - name: total_home_raw_yac_epa
+        datatype: float
+      - name: total_away_raw_yac_epa
+        datatype: float
+      - name: wp
+        datatype: float
+      - name: def_wp
+        datatype: float
+      - name: home_wp
+        datatype: float
+      - name: away_wp
+        datatype: float
+      - name: wpa
+        datatype: float
+      - name: vegas_wpa
+        datatype: float
+      - name: vegas_home_wpa
+        datatype: float
+      - name: home_wp_post
+        datatype: float
+      - name: away_wp_post
+        datatype: float
+      - name: vegas_wp
+        datatype: float
+      - name: vegas_home_wp
+        datatype: float
+      - name: total_home_rush_wpa
+        datatype: float
+      - name: total_away_rush_wpa
+        datatype: float
+      - name: total_home_pass_wpa
+        datatype: float
+      - name: total_away_pass_wpa
+        datatype: float
+      - name: air_wpa
+        datatype: float
+      - name: yac_wpa
+        datatype: float
+      - name: comp_air_wpa
+        datatype: float
+      - name: comp_yac_wpa
+        datatype: float
+      - name: total_home_comp_air_wpa
+        datatype: float
+      - name: total_away_comp_air_wpa
+        datatype: float
+      - name: total_home_comp_yac_wpa
+        datatype: float
+      - name: total_away_comp_yac_wpa
+        datatype: float
+      - name: total_home_raw_air_wpa
+        datatype: float
+      - name: total_away_raw_air_wpa
+        datatype: float
+      - name: total_home_raw_yac_wpa
+        datatype: float
+      - name: total_away_raw_yac_wpa
+        datatype: float
+      - name: punt_blocked
+        datatype: float
+      - name: first_down_rush
+        datatype: float
+      - name: first_down_pass
+        datatype: float
+      - name: first_down_penalty
+        datatype: float
+      - name: third_down_converted
+        datatype: float
+      - name: third_down_failed
+        datatype: float
+      - name: fourth_down_converted
+        datatype: float
+      - name: fourth_down_failed
+        datatype: float
+      - name: incomplete_pass
+        datatype: float
+      - name: touchback
+        datatype: float
+      - name: interception
+        datatype: float
+      - name: punt_inside_twenty
+        datatype: float
+      - name: punt_in_endzone
+        datatype: float
+      - name: punt_out_of_bounds
+        datatype: float
+      - name: punt_downed
+        datatype: float
+      - name: punt_fair_catch
+        datatype: float
+      - name: kickoff_inside_twenty
+        datatype: float
+      - name: kickoff_in_endzone
+        datatype: float
+      - name: kickoff_out_of_bounds
+        datatype: float
+      - name: kickoff_downed
+        datatype: float
+      - name: kickoff_fair_catch
+        datatype: float
+      - name: fumble_forced
+        datatype: float
+      - name: fumble_not_forced
+        datatype: float
+      - name: fumble_out_of_bounds
+        datatype: float
+      - name: solo_tackle
+        datatype: float
+      - name: safety
+        datatype: float
+      - name: penalty
+        datatype: float
+      - name: tackled_for_loss
+        datatype: float
+      - name: fumble_lost
+        datatype: float
+      - name: own_kickoff_recovery
+        datatype: float
+      - name: own_kickoff_recovery_td
+        datatype: float
+      - name: qb_hit
+        datatype: float
+      - name: rush_attempt
+        datatype: float
+      - name: pass_attempt
+        datatype: float
+      - name: sack
+        datatype: float
+      - name: touchdown
+        datatype: float
+      - name: pass_touchdown
+        datatype: float
+      - name: rush_touchdown
+        datatype: float
+      - name: return_touchdown
+        datatype: float
+      - name: extra_point_attempt
+        datatype: float
+      - name: two_point_attempt
+        datatype: float
+      - name: field_goal_attempt
+        datatype: float
+      - name: kickoff_attempt
+        datatype: float
+      - name: punt_attempt
+        datatype: float
+      - name: fumble
+        datatype: float
+      - name: complete_pass
+        datatype: float
+      - name: assist_tackle
+        datatype: float
+      - name: lateral_reception
+        datatype: float
+      - name: lateral_rush
+        datatype: float
+      - name: lateral_return
+        datatype: float
+      - name: lateral_recovery
+        datatype: float
+      - name: passer_player_id
+        datatype: varchar
+      - name: passer_player_name
+        datatype: varchar
+      - name: passing_yards
+        datatype: float
+      - name: receiver_player_id
+        datatype: varchar
+      - name: receiver_player_name
+        datatype: varchar
+      - name: receiving_yards
+        datatype: float
+      - name: rusher_player_id
+        datatype: varchar
+      - name: rusher_player_name
+        datatype: varchar
+      - name: rushing_yards
+        datatype: float
+      - name: lateral_receiver_player_id
+        datatype: varchar
+      - name: lateral_receiver_player_name
+        datatype: varchar
+      - name: lateral_receiving_yards
+        datatype: float
+      - name: lateral_rusher_player_id
+        datatype: varchar
+      - name: lateral_rusher_player_name
+        datatype: varchar
+      - name: lateral_rushing_yards
+        datatype: float
+      - name: lateral_sack_player_id
+        datatype: varchar
+      - name: lateral_sack_player_name
+        datatype: varchar
+      - name: interception_player_id
+        datatype: varchar
+      - name: interception_player_name
+        datatype: varchar
+      - name: lateral_interception_player_id
+        datatype: varchar
+      - name: lateral_interception_player_name
+        datatype: varchar
+      - name: punt_returner_player_id
+        datatype: varchar
+      - name: punt_returner_player_name
+        datatype: varchar
+      - name: lateral_punt_returner_player_id
+        datatype: varchar
+      - name: lateral_punt_returner_player_name
+        datatype: varchar
+      - name: kickoff_returner_player_name
+        datatype: varchar
+      - name: kickoff_returner_player_id
+        datatype: varchar
+      - name: lateral_kickoff_returner_player_id
+        datatype: varchar
+      - name: lateral_kickoff_returner_player_name
+        datatype: varchar
+      - name: punter_player_id
+        datatype: varchar
+      - name: punter_player_name
+        datatype: varchar
+      - name: kicker_player_name
+        datatype: varchar
+      - name: kicker_player_id
+        datatype: varchar
+      - name: own_kickoff_recovery_player_id
+        datatype: varchar
+      - name: own_kickoff_recovery_player_name
+        datatype: varchar
+      - name: blocked_player_id
+        datatype: varchar
+      - name: blocked_player_name
+        datatype: varchar
+      - name: tackle_for_loss_1_player_id
+        datatype: varchar
+      - name: tackle_for_loss_1_player_name
+        datatype: varchar
+      - name: tackle_for_loss_2_player_id
+        datatype: varchar
+      - name: tackle_for_loss_2_player_name
+        datatype: varchar
+      - name: qb_hit_1_player_id
+        datatype: varchar
+      - name: qb_hit_1_player_name
+        datatype: varchar
+      - name: qb_hit_2_player_id
+        datatype: varchar
+      - name: qb_hit_2_player_name
+        datatype: varchar
+      - name: forced_fumble_player_1_team
+        datatype: varchar
+      - name: forced_fumble_player_1_player_id
+        datatype: varchar
+      - name: forced_fumble_player_1_player_name
+        datatype: varchar
+      - name: forced_fumble_player_2_team
+        datatype: varchar
+      - name: forced_fumble_player_2_player_id
+        datatype: varchar
+      - name: forced_fumble_player_2_player_name
+        datatype: varchar
+      - name: solo_tackle_1_team
+        datatype: varchar
+      - name: solo_tackle_2_team
+        datatype: varchar
+      - name: solo_tackle_1_player_id
+        datatype: varchar
+      - name: solo_tackle_2_player_id
+        datatype: varchar
+      - name: solo_tackle_1_player_name
+        datatype: varchar
+      - name: solo_tackle_2_player_name
+        datatype: varchar
+      - name: assist_tackle_1_player_id
+        datatype: varchar
+      - name: assist_tackle_1_player_name
+        datatype: varchar
+      - name: assist_tackle_1_team
+        datatype: varchar
+      - name: assist_tackle_2_player_id
+        datatype: varchar
+      - name: assist_tackle_2_player_name
+        datatype: varchar
+      - name: assist_tackle_2_team
+        datatype: varchar
+      - name: assist_tackle_3_player_id
+        datatype: varchar
+      - name: assist_tackle_3_player_name
+        datatype: varchar
+      - name: assist_tackle_3_team
+        datatype: varchar
+      - name: assist_tackle_4_player_id
+        datatype: varchar
+      - name: assist_tackle_4_player_name
+        datatype: varchar
+      - name: assist_tackle_4_team
+        datatype: varchar
+      - name: tackle_with_assist
+        datatype: float
+      - name: tackle_with_assist_1_player_id
+        datatype: varchar
+      - name: tackle_with_assist_1_player_name
+        datatype: varchar
+      - name: tackle_with_assist_1_team
+        datatype: varchar
+      - name: tackle_with_assist_2_player_id
+        datatype: varchar
+      - name: tackle_with_assist_2_player_name
+        datatype: varchar
+      - name: tackle_with_assist_2_team
+        datatype: varchar
+      - name: pass_defense_1_player_id
+        datatype: varchar
+      - name: pass_defense_1_player_name
+        datatype: varchar
+      - name: pass_defense_2_player_id
+        datatype: varchar
+      - name: pass_defense_2_player_name
+        datatype: varchar
+      - name: fumbled_1_team
+        datatype: varchar
+      - name: fumbled_1_player_id
+        datatype: varchar
+      - name: fumbled_1_player_name
+        datatype: varchar
+      - name: fumbled_2_player_id
+        datatype: varchar
+      - name: fumbled_2_player_name
+        datatype: varchar
+      - name: fumbled_2_team
+        datatype: varchar
+      - name: fumble_recovery_1_team
+        datatype: varchar
+      - name: fumble_recovery_1_yards
+        datatype: float
+      - name: fumble_recovery_1_player_id
+        datatype: varchar
+      - name: fumble_recovery_1_player_name
+        datatype: varchar
+      - name: fumble_recovery_2_team
+        datatype: varchar
+      - name: fumble_recovery_2_yards
+        datatype: float
+      - name: fumble_recovery_2_player_id
+        datatype: varchar
+      - name: fumble_recovery_2_player_name
+        datatype: varchar
+      - name: sack_player_id
+        datatype: varchar
+      - name: sack_player_name
+        datatype: varchar
+      - name: half_sack_1_player_id
+        datatype: varchar
+      - name: half_sack_1_player_name
+        datatype: varchar
+      - name: half_sack_2_player_id
+        datatype: varchar
+      - name: half_sack_2_player_name
+        datatype: varchar
+      - name: return_team
+        datatype: varchar
+      - name: return_yards
+        datatype: float
+      - name: penalty_team
+        datatype: varchar
+      - name: penalty_player_id
+        datatype: varchar
+      - name: penalty_player_name
+        datatype: varchar
+      - name: penalty_yards
+        datatype: float
+      - name: replay_or_challenge
+        datatype: float
+      - name: replay_or_challenge_result
+        datatype: varchar
+      - name: penalty_type
+        datatype: varchar
+      - name: defensive_two_point_attempt
+        datatype: float
+      - name: defensive_two_point_conv
+        datatype: float
+      - name: defensive_extra_point_attempt
+        datatype: float
+      - name: defensive_extra_point_conv
+        datatype: float
+      - name: safety_player_name
+        datatype: varchar
+      - name: safety_player_id
+        datatype: varchar
+      - name: season
+        datatype: int64
+      - name: cp
+        datatype: float
+      - name: cpoe
+        datatype: float
+      - name: series
+        datatype: float
+      - name: series_success
+        datatype: float
+      - name: series_result
+        datatype: varchar
+      - name: order_sequence
+        datatype: float
+      - name: start_time
+        datatype: varchar
+      - name: time_of_day
+        datatype: varchar
+      - name: stadium
+        datatype: varchar
+      - name: weather
+        datatype: varchar
+      - name: nfl_api_id
+        datatype: varchar
+      - name: play_clock
+        datatype: varchar
+      - name: play_deleted
+        datatype: float
+      - name: play_type_nfl
+        datatype: varchar
+      - name: special_teams_play
+        datatype: float
+      - name: st_play_type
+        datatype: varchar
+      - name: end_clock_time
+        datatype: varchar
+      - name: end_yard_line
+        datatype: varchar
+      - name: fixed_drive
+        datatype: float
+      - name: fixed_drive_result
+        datatype: varchar
+      - name: drive_real_start_time
+        datatype: varchar
+      - name: drive_play_count
+        datatype: float
+      - name: drive_time_of_possession
+        datatype: varchar
+      - name: drive_first_downs
+        datatype: float
+      - name: drive_inside20
+        datatype: float
+      - name: drive_ended_with_score
+        datatype: float
+      - name: drive_quarter_start
+        datatype: float
+      - name: drive_quarter_end
+        datatype: float
+      - name: drive_yards_penalized
+        datatype: float
+      - name: drive_start_transition
+        datatype: varchar
+      - name: drive_end_transition
+        datatype: varchar
+      - name: drive_game_clock_start
+        datatype: varchar
+      - name: drive_game_clock_end
+        datatype: varchar
+      - name: drive_start_yard_line
+        datatype: varchar
+      - name: drive_end_yard_line
+        datatype: varchar
+      - name: drive_play_id_started
+        datatype: float
+      - name: drive_play_id_ended
+        datatype: float
+      - name: away_score
+        datatype: integer
+      - name: home_score
+        datatype: integer
+      - name: location
+        datatype: varchar
+      - name: result
+        datatype: integer
+      - name: total
+        datatype: integer
+      - name: spread_line
+        datatype: float
+      - name: total_line
+        datatype: float
+      - name: div_game
+        datatype: integer
+      - name: roof
+        datatype: varchar
+      - name: surface
+        datatype: varchar
+      - name: temp
+        datatype: float
+      - name: wind
+        datatype: float
+      - name: home_coach
+        datatype: varchar
+      - name: away_coach
+        datatype: varchar
+      - name: stadium_id
+        datatype: varchar
+      - name: game_stadium
+        datatype: varchar
+      - name: aborted_play
+        datatype: float
+      - name: success
+        datatype: float
+      - name: passer
+        datatype: varchar
+      - name: passer_jersey_number
+        datatype: float
+      - name: rusher
+        datatype: varchar
+      - name: rusher_jersey_number
+        datatype: float
+      - name: receiver
+        datatype: varchar
+      - name: receiver_jersey_number
+        datatype: float
+      - name: pass
+        datatype: float
+      - name: rush
+        datatype: float
+      - name: first_down
+        datatype: float
+      - name: special
+        datatype: float
+      - name: play
+        datatype: float
+      - name: passer_id
+        datatype: varchar
+      - name: rusher_id
+        datatype: varchar
+      - name: receiver_id
+        datatype: varchar
+      - name: name
+        datatype: varchar
+      - name: jersey_number
+        datatype: float
+      - name: id
+        datatype: varchar
+      - name: fantasy_player_name
+        datatype: varchar
+      - name: fantasy_player_id
+        datatype: varchar
+      - name: fantasy
+        datatype: varchar
+      - name: fantasy_id
+        datatype: varchar
+      - name: out_of_bounds
+        datatype: float
+      - name: home_opening_kickoff
+        datatype: float
+      - name: qb_epa
+        datatype: float
+      - name: xyac_epa
+        datatype: float
+      - name: xyac_mean_yardage
+        datatype: float
+      - name: xyac_median_yardage
+        datatype: float
+      - name: xyac_success
+        datatype: float
+      - name: xyac_fd
+        datatype: float
+      - name: xpass
+        datatype: float
+      - name: pass_oe
+        datatype: float
+      - name: nflverse_game_id
+        datatype: varchar
+      - name: possession_team
+        datatype: varchar
+      - name: offense_formation
+        datatype: varchar
+      - name: offense_personnel
+        datatype: varchar
+      - name: defenders_in_box
+        datatype: float
+      - name: defense_personnel
+        datatype: varchar
+      - name: number_of_pass_rushers
+        datatype: float
+      - name: players_on_play
+        datatype: varchar
+      - name: offense_players
+        datatype: varchar
+      - name: defense_players
+        datatype: varchar
+      - name: n_offense
+        datatype: float
+      - name: n_defense
+        datatype: float
+--- 
+table: 
+  name: pbp_2021
+  file-format: csv
+  with-header: true
+  location: src/raw/pbp_2021.sql
+  columns:
+  - name: play_id
+    datatype: float
+  - name: game_id
+    datatype: varchar
+  - name: old_game_id
+    datatype: varchar
+  - name: home_team
+    datatype: varchar
+  - name: away_team
+    datatype: varchar
+  - name: season_type
+    datatype: varchar
+  - name: week
+    datatype: integer
+  - name: posteam
+    datatype: varchar
+  - name: posteam_type
+    datatype: varchar
+  - name: defteam
+    datatype: varchar
+  - name: side_of_field
+    datatype: varchar
+  - name: yardline_100
+    datatype: float
+  - name: game_date
+    datatype: varchar
+  - name: quarter_seconds_remaining
+    datatype: float
+  - name: half_seconds_remaining
+    datatype: float
+  - name: game_seconds_remaining
+    datatype: float
+  - name: game_half
+    datatype: varchar
+  - name: quarter_end
+    datatype: float
+  - name: drive
+    datatype: float
+  - name: sp
+    datatype: float
+  - name: qtr
+    datatype: float
+  - name: down
+    datatype: float
+  - name: goal_to_go
+    datatype: float
+  - name: time
+    datatype: varchar
+  - name: yrdln
+    datatype: varchar
+  - name: ydstogo
+    datatype: float
+  - name: ydsnet
+    datatype: float
+  - name: desc
+    datatype: varchar
+  - name: play_type
+    datatype: varchar
+  - name: yards_gained
+    datatype: float
+  - name: shotgun
+    datatype: float
+  - name: no_huddle
+    datatype: float
+  - name: qb_dropback
+    datatype: float
+  - name: qb_kneel
+    datatype: float
+  - name: qb_spike
+    datatype: float
+  - name: qb_scramble
+    datatype: float
+  - name: pass_length
+    datatype: varchar
+  - name: pass_location
+    datatype: varchar
+  - name: air_yards
+    datatype: float
+  - name: yards_after_catch
+    datatype: float
+  - name: run_location
+    datatype: varchar
+  - name: run_gap
+    datatype: varchar
+  - name: field_goal_result
+    datatype: varchar
+  - name: kick_distance
+    datatype: float
+  - name: extra_point_result
+    datatype: varchar
+  - name: two_point_conv_result
+    datatype: varchar
+  - name: home_timeouts_remaining
+    datatype: float
+  - name: away_timeouts_remaining
+    datatype: float
+  - name: timeout
+    datatype: float
+  - name: timeout_team
+    datatype: varchar
+  - name: td_team
+    datatype: varchar
+  - name: td_player_name
+    datatype: varchar
+  - name: td_player_id
+    datatype: varchar
+  - name: posteam_timeouts_remaining
+    datatype: float
+  - name: defteam_timeouts_remaining
+    datatype: float
+  - name: total_home_score
+    datatype: float
+  - name: total_away_score
+    datatype: float
+  - name: posteam_score
+    datatype: float
+  - name: defteam_score
+    datatype: float
+  - name: score_differential
+    datatype: float
+  - name: posteam_score_post
+    datatype: float
+  - name: defteam_score_post
+    datatype: float
+  - name: score_differential_post
+    datatype: float
+  - name: no_score_prob
+    datatype: float
+  - name: opp_fg_prob
+    datatype: float
+  - name: opp_safety_prob
+    datatype: float
+  - name: opp_td_prob
+    datatype: float
+  - name: fg_prob
+    datatype: float
+  - name: safety_prob
+    datatype: float
+  - name: td_prob
+    datatype: float
+  - name: extra_point_prob
+    datatype: float
+  - name: two_point_conversion_prob
+    datatype: float
+  - name: ep
+    datatype: float
+  - name: epa
+    datatype: float
+  - name: total_home_epa
+    datatype: float
+  - name: total_away_epa
+    datatype: float
+  - name: total_home_rush_epa
+    datatype: float
+  - name: total_away_rush_epa
+    datatype: float
+  - name: total_home_pass_epa
+    datatype: float
+  - name: total_away_pass_epa
+    datatype: float
+  - name: air_epa
+    datatype: float
+  - name: yac_epa
+    datatype: float
+  - name: comp_air_epa
+    datatype: float
+  - name: comp_yac_epa
+    datatype: float
+  - name: total_home_comp_air_epa
+    datatype: float
+  - name: total_away_comp_air_epa
+    datatype: float
+  - name: total_home_comp_yac_epa
+    datatype: float
+  - name: total_away_comp_yac_epa
+    datatype: float
+  - name: total_home_raw_air_epa
+    datatype: float
+  - name: total_away_raw_air_epa
+    datatype: float
+  - name: total_home_raw_yac_epa
+    datatype: float
+  - name: total_away_raw_yac_epa
+    datatype: float
+  - name: wp
+    datatype: float
+  - name: def_wp
+    datatype: float
+  - name: home_wp
+    datatype: float
+  - name: away_wp
+    datatype: float
+  - name: wpa
+    datatype: float
+  - name: vegas_wpa
+    datatype: float
+  - name: vegas_home_wpa
+    datatype: float
+  - name: home_wp_post
+    datatype: float
+  - name: away_wp_post
+    datatype: float
+  - name: vegas_wp
+    datatype: float
+  - name: vegas_home_wp
+    datatype: float
+  - name: total_home_rush_wpa
+    datatype: float
+  - name: total_away_rush_wpa
+    datatype: float
+  - name: total_home_pass_wpa
+    datatype: float
+  - name: total_away_pass_wpa
+    datatype: float
+  - name: air_wpa
+    datatype: float
+  - name: yac_wpa
+    datatype: float
+  - name: comp_air_wpa
+    datatype: float
+  - name: comp_yac_wpa
+    datatype: float
+  - name: total_home_comp_air_wpa
+    datatype: float
+  - name: total_away_comp_air_wpa
+    datatype: float
+  - name: total_home_comp_yac_wpa
+    datatype: float
+  - name: total_away_comp_yac_wpa
+    datatype: float
+  - name: total_home_raw_air_wpa
+    datatype: float
+  - name: total_away_raw_air_wpa
+    datatype: float
+  - name: total_home_raw_yac_wpa
+    datatype: float
+  - name: total_away_raw_yac_wpa
+    datatype: float
+  - name: punt_blocked
+    datatype: float
+  - name: first_down_rush
+    datatype: float
+  - name: first_down_pass
+    datatype: float
+  - name: first_down_penalty
+    datatype: float
+  - name: third_down_converted
+    datatype: float
+  - name: third_down_failed
+    datatype: float
+  - name: fourth_down_converted
+    datatype: float
+  - name: fourth_down_failed
+    datatype: float
+  - name: incomplete_pass
+    datatype: float
+  - name: touchback
+    datatype: float
+  - name: interception
+    datatype: float
+  - name: punt_inside_twenty
+    datatype: float
+  - name: punt_in_endzone
+    datatype: float
+  - name: punt_out_of_bounds
+    datatype: float
+  - name: punt_downed
+    datatype: float
+  - name: punt_fair_catch
+    datatype: float
+  - name: kickoff_inside_twenty
+    datatype: float
+  - name: kickoff_in_endzone
+    datatype: float
+  - name: kickoff_out_of_bounds
+    datatype: float
+  - name: kickoff_downed
+    datatype: float
+  - name: kickoff_fair_catch
+    datatype: float
+  - name: fumble_forced
+    datatype: float
+  - name: fumble_not_forced
+    datatype: float
+  - name: fumble_out_of_bounds
+    datatype: float
+  - name: solo_tackle
+    datatype: float
+  - name: safety
+    datatype: float
+  - name: penalty
+    datatype: float
+  - name: tackled_for_loss
+    datatype: float
+  - name: fumble_lost
+    datatype: float
+  - name: own_kickoff_recovery
+    datatype: float
+  - name: own_kickoff_recovery_td
+    datatype: float
+  - name: qb_hit
+    datatype: float
+  - name: rush_attempt
+    datatype: float
+  - name: pass_attempt
+    datatype: float
+  - name: sack
+    datatype: float
+  - name: touchdown
+    datatype: float
+  - name: pass_touchdown
+    datatype: float
+  - name: rush_touchdown
+    datatype: float
+  - name: return_touchdown
+    datatype: float
+  - name: extra_point_attempt
+    datatype: float
+  - name: two_point_attempt
+    datatype: float
+  - name: field_goal_attempt
+    datatype: float
+  - name: kickoff_attempt
+    datatype: float
+  - name: punt_attempt
+    datatype: float
+  - name: fumble
+    datatype: float
+  - name: complete_pass
+    datatype: float
+  - name: assist_tackle
+    datatype: float
+  - name: lateral_reception
+    datatype: float
+  - name: lateral_rush
+    datatype: float
+  - name: lateral_return
+    datatype: float
+  - name: lateral_recovery
+    datatype: float
+  - name: passer_player_id
+    datatype: varchar
+  - name: passer_player_name
+    datatype: varchar
+  - name: passing_yards
+    datatype: float
+  - name: receiver_player_id
+    datatype: varchar
+  - name: receiver_player_name
+    datatype: varchar
+  - name: receiving_yards
+    datatype: float
+  - name: rusher_player_id
+    datatype: varchar
+  - name: rusher_player_name
+    datatype: varchar
+  - name: rushing_yards
+    datatype: float
+  - name: lateral_receiver_player_id
+    datatype: varchar
+  - name: lateral_receiver_player_name
+    datatype: varchar
+  - name: lateral_receiving_yards
+    datatype: float
+  - name: lateral_rusher_player_id
+    datatype: varchar
+  - name: lateral_rusher_player_name
+    datatype: varchar
+  - name: lateral_rushing_yards
+    datatype: float
+  - name: lateral_sack_player_id
+    datatype: varchar
+  - name: lateral_sack_player_name
+    datatype: varchar
+  - name: interception_player_id
+    datatype: varchar
+  - name: interception_player_name
+    datatype: varchar
+  - name: lateral_interception_player_id
+    datatype: varchar
+  - name: lateral_interception_player_name
+    datatype: varchar
+  - name: punt_returner_player_id
+    datatype: varchar
+  - name: punt_returner_player_name
+    datatype: varchar
+  - name: lateral_punt_returner_player_id
+    datatype: varchar
+  - name: lateral_punt_returner_player_name
+    datatype: varchar
+  - name: kickoff_returner_player_name
+    datatype: varchar
+  - name: kickoff_returner_player_id
+    datatype: varchar
+  - name: lateral_kickoff_returner_player_id
+    datatype: varchar
+  - name: lateral_kickoff_returner_player_name
+    datatype: varchar
+  - name: punter_player_id
+    datatype: varchar
+  - name: punter_player_name
+    datatype: varchar
+  - name: kicker_player_name
+    datatype: varchar
+  - name: kicker_player_id
+    datatype: varchar
+  - name: own_kickoff_recovery_player_id
+    datatype: varchar
+  - name: own_kickoff_recovery_player_name
+    datatype: varchar
+  - name: blocked_player_id
+    datatype: varchar
+  - name: blocked_player_name
+    datatype: varchar
+  - name: tackle_for_loss_1_player_id
+    datatype: varchar
+  - name: tackle_for_loss_1_player_name
+    datatype: varchar
+  - name: tackle_for_loss_2_player_id
+    datatype: varchar
+  - name: tackle_for_loss_2_player_name
+    datatype: varchar
+  - name: qb_hit_1_player_id
+    datatype: varchar
+  - name: qb_hit_1_player_name
+    datatype: varchar
+  - name: qb_hit_2_player_id
+    datatype: varchar
+  - name: qb_hit_2_player_name
+    datatype: varchar
+  - name: forced_fumble_player_1_team
+    datatype: varchar
+  - name: forced_fumble_player_1_player_id
+    datatype: varchar
+  - name: forced_fumble_player_1_player_name
+    datatype: varchar
+  - name: forced_fumble_player_2_team
+    datatype: varchar
+  - name: forced_fumble_player_2_player_id
+    datatype: varchar
+  - name: forced_fumble_player_2_player_name
+    datatype: varchar
+  - name: solo_tackle_1_team
+    datatype: varchar
+  - name: solo_tackle_2_team
+    datatype: varchar
+  - name: solo_tackle_1_player_id
+    datatype: varchar
+  - name: solo_tackle_2_player_id
+    datatype: varchar
+  - name: solo_tackle_1_player_name
+    datatype: varchar
+  - name: solo_tackle_2_player_name
+    datatype: varchar
+  - name: assist_tackle_1_player_id
+    datatype: varchar
+  - name: assist_tackle_1_player_name
+    datatype: varchar
+  - name: assist_tackle_1_team
+    datatype: varchar
+  - name: assist_tackle_2_player_id
+    datatype: varchar
+  - name: assist_tackle_2_player_name
+    datatype: varchar
+  - name: assist_tackle_2_team
+    datatype: varchar
+  - name: assist_tackle_3_player_id
+    datatype: varchar
+  - name: assist_tackle_3_player_name
+    datatype: varchar
+  - name: assist_tackle_3_team
+    datatype: varchar
+  - name: assist_tackle_4_player_id
+    datatype: varchar
+  - name: assist_tackle_4_player_name
+    datatype: varchar
+  - name: assist_tackle_4_team
+    datatype: varchar
+  - name: tackle_with_assist
+    datatype: float
+  - name: tackle_with_assist_1_player_id
+    datatype: varchar
+  - name: tackle_with_assist_1_player_name
+    datatype: varchar
+  - name: tackle_with_assist_1_team
+    datatype: varchar
+  - name: tackle_with_assist_2_player_id
+    datatype: varchar
+  - name: tackle_with_assist_2_player_name
+    datatype: varchar
+  - name: tackle_with_assist_2_team
+    datatype: varchar
+  - name: pass_defense_1_player_id
+    datatype: varchar
+  - name: pass_defense_1_player_name
+    datatype: varchar
+  - name: pass_defense_2_player_id
+    datatype: varchar
+  - name: pass_defense_2_player_name
+    datatype: varchar
+  - name: fumbled_1_team
+    datatype: varchar
+  - name: fumbled_1_player_id
+    datatype: varchar
+  - name: fumbled_1_player_name
+    datatype: varchar
+  - name: fumbled_2_player_id
+    datatype: varchar
+  - name: fumbled_2_player_name
+    datatype: varchar
+  - name: fumbled_2_team
+    datatype: varchar
+  - name: fumble_recovery_1_team
+    datatype: varchar
+  - name: fumble_recovery_1_yards
+    datatype: float
+  - name: fumble_recovery_1_player_id
+    datatype: varchar
+  - name: fumble_recovery_1_player_name
+    datatype: varchar
+  - name: fumble_recovery_2_team
+    datatype: varchar
+  - name: fumble_recovery_2_yards
+    datatype: float
+  - name: fumble_recovery_2_player_id
+    datatype: varchar
+  - name: fumble_recovery_2_player_name
+    datatype: varchar
+  - name: sack_player_id
+    datatype: varchar
+  - name: sack_player_name
+    datatype: varchar
+  - name: half_sack_1_player_id
+    datatype: varchar
+  - name: half_sack_1_player_name
+    datatype: varchar
+  - name: half_sack_2_player_id
+    datatype: varchar
+  - name: half_sack_2_player_name
+    datatype: varchar
+  - name: return_team
+    datatype: varchar
+  - name: return_yards
+    datatype: float
+  - name: penalty_team
+    datatype: varchar
+  - name: penalty_player_id
+    datatype: varchar
+  - name: penalty_player_name
+    datatype: varchar
+  - name: penalty_yards
+    datatype: float
+  - name: replay_or_challenge
+    datatype: float
+  - name: replay_or_challenge_result
+    datatype: varchar
+  - name: penalty_type
+    datatype: varchar
+  - name: defensive_two_point_attempt
+    datatype: float
+  - name: defensive_two_point_conv
+    datatype: float
+  - name: defensive_extra_point_attempt
+    datatype: float
+  - name: defensive_extra_point_conv
+    datatype: float
+  - name: safety_player_name
+    datatype: varchar
+  - name: safety_player_id
+    datatype: varchar
+  - name: season
+    datatype: int64
+  - name: cp
+    datatype: float
+  - name: cpoe
+    datatype: float
+  - name: series
+    datatype: float
+  - name: series_success
+    datatype: float
+  - name: series_result
+    datatype: varchar
+  - name: order_sequence
+    datatype: float
+  - name: start_time
+    datatype: varchar
+  - name: time_of_day
+    datatype: varchar
+  - name: stadium
+    datatype: varchar
+  - name: weather
+    datatype: varchar
+  - name: nfl_api_id
+    datatype: varchar
+  - name: play_clock
+    datatype: varchar
+  - name: play_deleted
+    datatype: float
+  - name: play_type_nfl
+    datatype: varchar
+  - name: special_teams_play
+    datatype: float
+  - name: st_play_type
+    datatype: varchar
+  - name: end_clock_time
+    datatype: varchar
+  - name: end_yard_line
+    datatype: varchar
+  - name: fixed_drive
+    datatype: float
+  - name: fixed_drive_result
+    datatype: varchar
+  - name: drive_real_start_time
+    datatype: varchar
+  - name: drive_play_count
+    datatype: float
+  - name: drive_time_of_possession
+    datatype: varchar
+  - name: drive_first_downs
+    datatype: float
+  - name: drive_inside20
+    datatype: float
+  - name: drive_ended_with_score
+    datatype: float
+  - name: drive_quarter_start
+    datatype: float
+  - name: drive_quarter_end
+    datatype: float
+  - name: drive_yards_penalized
+    datatype: float
+  - name: drive_start_transition
+    datatype: varchar
+  - name: drive_end_transition
+    datatype: varchar
+  - name: drive_game_clock_start
+    datatype: varchar
+  - name: drive_game_clock_end
+    datatype: varchar
+  - name: drive_start_yard_line
+    datatype: varchar
+  - name: drive_end_yard_line
+    datatype: varchar
+  - name: drive_play_id_started
+    datatype: float
+  - name: drive_play_id_ended
+    datatype: float
+  - name: away_score
+    datatype: integer
+  - name: home_score
+    datatype: integer
+  - name: location
+    datatype: varchar
+  - name: result
+    datatype: integer
+  - name: total
+    datatype: integer
+  - name: spread_line
+    datatype: float
+  - name: total_line
+    datatype: float
+  - name: div_game
+    datatype: integer
+  - name: roof
+    datatype: varchar
+  - name: surface
+    datatype: varchar
+  - name: temp
+    datatype: float
+  - name: wind
+    datatype: float
+  - name: home_coach
+    datatype: varchar
+  - name: away_coach
+    datatype: varchar
+  - name: stadium_id
+    datatype: varchar
+  - name: game_stadium
+    datatype: varchar
+  - name: aborted_play
+    datatype: float
+  - name: success
+    datatype: float
+  - name: passer
+    datatype: varchar
+  - name: passer_jersey_number
+    datatype: float
+  - name: rusher
+    datatype: varchar
+  - name: rusher_jersey_number
+    datatype: float
+  - name: receiver
+    datatype: varchar
+  - name: receiver_jersey_number
+    datatype: float
+  - name: pass
+    datatype: float
+  - name: rush
+    datatype: float
+  - name: first_down
+    datatype: float
+  - name: special
+    datatype: float
+  - name: play
+    datatype: float
+  - name: passer_id
+    datatype: varchar
+  - name: rusher_id
+    datatype: varchar
+  - name: receiver_id
+    datatype: varchar
+  - name: name
+    datatype: varchar
+  - name: jersey_number
+    datatype: float
+  - name: id
+    datatype: varchar
+  - name: fantasy_player_name
+    datatype: varchar
+  - name: fantasy_player_id
+    datatype: varchar
+  - name: fantasy
+    datatype: varchar
+  - name: fantasy_id
+    datatype: varchar
+  - name: out_of_bounds
+    datatype: float
+  - name: home_opening_kickoff
+    datatype: float
+  - name: qb_epa
+    datatype: float
+  - name: xyac_epa
+    datatype: float
+  - name: xyac_mean_yardage
+    datatype: float
+  - name: xyac_median_yardage
+    datatype: float
+  - name: xyac_success
+    datatype: float
+  - name: xyac_fd
+    datatype: float
+  - name: xpass
+    datatype: float
+  - name: pass_oe
+    datatype: float
+  - name: nflverse_game_id
+    datatype: varchar
+  - name: possession_team
+    datatype: varchar
+  - name: offense_formation
+    datatype: varchar
+  - name: offense_personnel
+    datatype: varchar
+  - name: defenders_in_box
+    datatype: float
+  - name: defense_personnel
+    datatype: varchar
+  - name: number_of_pass_rushers
+    datatype: float
+  - name: players_on_play
+    datatype: varchar
+  - name: offense_players
+    datatype: varchar
+  - name: defense_players
+    datatype: varchar
+  - name: n_offense
+    datatype: float
+  - name: n_defense
+    datatype: float
