@@ -1,0 +1,6 @@
+function:
+  name: md5
+  reclassify:
+    - from: MASKER.hash_me
+      to: MASKER.it_was_hashed
+  

@@ -1,0 +1,30 @@
+table: 
+  name: pbp_2020
+  file-format: parquet
+  with-header: true
+  source-locations:
+    - path: src/raw/pbp_2020.sql
+---
+table: 
+  name: pbp_2021
+  file-format: parquet
+  with-header: true
+  source-locations: 
+    - path: src/raw/pbp_2021.sql
+---
+table:
+  name: pbp_2022
+  file-format: parquet
+  with-header: true
+  source-locations:
+    - path: src/raw/pbp_2022.sql
+---
+table:
+  name: pbp_all
+  columns:
+    - name: home_team
+      classifiers:
+        - MASKER.hash_me
+    - name: away_team
+      classifiers:
+        - MASKER.hash_me

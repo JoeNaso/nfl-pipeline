@@ -5,4 +5,5 @@ SELECT
 FROM
     columns c
 WHERE
-    c.classifiers like '%PII.name%'
+    c.classifiers like 'MASKER.hash_me'
+    and c.c_name like '%.base_%'

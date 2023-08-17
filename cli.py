@@ -5,6 +5,7 @@ import boto3
 import click
 
 from pipeline.data import get_nfl_data, clean_data, get_filename
+from pipeline.db import duck
 from pipeline.db.snow import get_snowflake_conn, create_handler_stage, get_stage_uri
 
 
@@ -59,9 +60,18 @@ def load(years, bucket, ext):
         print(f"Loaded to s3:\t{filename}")
 
 
+@click.command()
+def load_duck_db():
+    """
+    Load data into duckdb and create a local export
+    """
+    duck.load_duckdb()
+
+
 if __name__ == "__main__":
     cli.add_command(echo)
     cli.add_command(upload_handler_to_stage)
     cli.add_command(load)
+    cli.add_command(load_duck_db)
 
     cli()

@@ -1,0 +1,25 @@
+workspace:
+  name: nfl_sdf
+  edition: "1.1"
+  dialect: sdf
+  description: >
+    An SDF implementation of various data models
+  remote-location: 's3://purview-snowflake/sdf/'
+  includes:
+    - path: src
+    - path: src/functions.sdf.yml
+  code-checks:
+    - name: Code Check
+      description: >
+        Example check to ensure no base table columns are classified for hashing
+      assert: not-exists
+      path: checks/code_check.sql
+
+---
+classifier:
+  name: MASKER
+  labels:
+    - name: hash_me
+    - name: it_was_hashed
+
+  

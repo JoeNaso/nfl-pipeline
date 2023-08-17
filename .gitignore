@@ -1,5 +1,5 @@
-nfl_pbp
-nfl_pbp.wal
+nfl_pbp.duckdb
+nfl_pbp.duckdb.wal
 
 .idea
 .spyproject

@@ -1,0 +1,5 @@
+table: 
+  name: base_game
+  columns:
+    - name: away_team_masked
+    - name: home_team_masked
