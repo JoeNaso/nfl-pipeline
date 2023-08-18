@@ -1,5 +1,5 @@
 MODEL (
-  name base.base_plays,
+  name base_sqlmesh.base_plays,
   kind FULL,
   grain compound_key,
   audits [],
@@ -21,4 +21,4 @@ select
     yardline_100,
     total_home_score,
     total_away_score
-from pbp_all
+from raw.pbp_all

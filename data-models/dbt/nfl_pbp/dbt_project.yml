@@ -14,5 +14,13 @@ clean-targets:
 
 models:
   nfl_pbp:
+    
+    base:
+      +schema: base_dbt
+    
+    core:
+      +schema: core_dbt
+
     raw:
-      +schema: raw
+      +schema: raw_dbt
+    

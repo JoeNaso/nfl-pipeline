@@ -1,15 +1,10 @@
-/*
-TODO:
-    Update the logic to reflect total plays with possession
-
-*/
-
 with plays_home as (
     select
         game_id,
         home_team,
         count(distinct play_id) as total_plays
     from pbp_all
+    where posteam = home_team
     group by 1, 2
 
 ),
@@ -19,6 +14,7 @@ plays_away as (
         away_team,
         count(distinct play_id) as total_plays
     from pbp_all
+    where posteam = away_team
     group by 1, 2
 
 ),

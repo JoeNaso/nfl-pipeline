@@ -34,7 +34,7 @@ def prep_seed(conn: duckdb.DuckDBPyConnection):
 
 def seed(conn: duckdb.DuckDBPyConnection):
     """
-    These could all be loaded into a single file, but let's leave these in
+    These could all be loaded into a single file, but let's leave them in
     separate tables and handle with the data modeling tools
     """
     for table in TABLES:
@@ -44,7 +44,7 @@ def seed(conn: duckdb.DuckDBPyConnection):
             f"create table if not exists {RAW_SCHEMA}.{table} as "
             f"select * from read_parquet('{s3_fn}');"
         )
-        print(cmd)
+        print(f"Executing following command:\n\t{cmd}")
         conn.sql(cmd)
         print(f"Completed: {RAW_SCHEMA}.{table}")
 

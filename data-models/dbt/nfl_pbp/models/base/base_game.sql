@@ -4,6 +4,7 @@ with plays_home as (
         home_team as team,
         count(distinct play_id) as total_plays
     from {{ ref('pbp_all')}}
+    where posteam = home_team
     {{ group_by(2) }}
 
 ),
@@ -13,6 +14,7 @@ plays_away as (
         away_team as team,
         count(distinct play_id) as total_plays
     from {{ ref('pbp_all')}}
+    where posteam = away_team
     {{ group_by(2) }}
 
 ),
@@ -35,6 +37,8 @@ select
     season_type,
     home_team,
     away_team,
+    md5(plays.home_team) as home_team_masked, 
+    md5(plays.away_team) as away_team_masked,
     total_away_score,
     total_home_score,
     total_plays_home,
