@@ -1,7 +1,8 @@
 MODEL (
     name raw.pbp_2020,
     kind FULL,
-    grain [compound_key]
+    grain [compound_key],
+    audits [assert_game_scores_positive]
 );
 
 

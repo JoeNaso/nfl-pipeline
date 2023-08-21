@@ -2,7 +2,7 @@ MODEL (
   name base_sqlmesh.base_game,
   kind FULL,
   grain game_id,
-  audits [],
+  audits [assert_game_scores_positive],
 );
 
 with plays_home as (
@@ -57,3 +57,4 @@ select
 from raw.pbp_all
 inner join plays
     on pbp_all.game_id = plays.game_id
+;

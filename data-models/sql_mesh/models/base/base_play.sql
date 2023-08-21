@@ -2,7 +2,7 @@ MODEL (
   name base_sqlmesh.base_plays,
   kind FULL,
   grain compound_key,
-  audits [],
+  audits [assert_game_scores_positive],
 );
 
 select
