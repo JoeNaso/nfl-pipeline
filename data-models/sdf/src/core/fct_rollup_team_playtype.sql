@@ -4,7 +4,7 @@ with games as (
         game_id,
         play_type,
         count(play_id) as play_type_count,
-    from pbp_all
+    from base_play
     group by 1, 2, 3
 )
 
